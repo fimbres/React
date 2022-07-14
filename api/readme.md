@@ -12,6 +12,8 @@ Once you install MongoDB, make sure it's running.
 
 ### Install the Dependencies
 
+Node v8.16.2 required
+
 Next, from the project folder, install the dependencies:
 
     npm i
