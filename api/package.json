@@ -1,7 +1,7 @@
 {
-  "name": "vidly",
+  "name": "movix",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api of Movix",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,7 +9,7 @@
     "test": "jest --watchAll --verbose"
   },
   "keywords": [],
-  "author": "",
+  "author": "Isaac Fimbres",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.3",
