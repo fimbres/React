@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Link } from "react-router-dom";
 
 import { getMovies, deleteMovie } from "../services/movieService";
 import { getGenres } from "../services/genreService";
@@ -9,6 +8,7 @@ import { paginate } from '../utils/pagination';
 import ListGroup from './llistGroup';
 import { filtration } from '../utils/filtration';
 import MovieTable from './movieTable';
+import Like from './like';
 
 class Movie extends Component {
     state = {
@@ -18,12 +18,13 @@ class Movie extends Component {
         currentPage: 1,
         pageSize: 4,
         currentSort: undefined,
+        selectedMovie: {}
     };
 
     async componentDidMount() {
         const { data } = await getGenres();
         const { data: movies } = await getMovies();
-        this.setState({ movies, filters: [{ _id:'', name:"All Genres" }].concat(...data) });
+        this.setState({ movies, filters: [{ _id:'', name:"All Genres" }].concat(...data), selectedMovie: movies[0]});
     };
 
     handleDelete = id => {
@@ -38,25 +39,39 @@ class Movie extends Component {
 
     handleChange = page => this.setState({ currentPage: page });
 
+    handleSelect = movie => this.setState({ selectedMovie: movie });
+
     handleSort = sort => this.setState({ currentSort: {path: sort, order: "asc"} });
 
     render() { 
         const filteredMovies = this.state.currentFilter === "All Genres" ? this.state.movies : filtration(this.state.movies, this.state.currentFilter);
         this.state.currentSort && _.orderBy(filteredMovies, [this.state.currentSort.path], [this.state.currentSort.order]);
         const movies = paginate(filteredMovies, this.state.pageSize, this.state.currentPage);
+        const movie = this.state.selectedMovie;
         return (
             <React.Fragment>
-                <h1 className="mt-5">Showing {filteredMovies.length} movies from the database</h1>
-                <Link className="btn btn-primary" to="/movie/new">New Movie</Link>
-                <div className="">
-                    <div className="mt-3 w-100">
-                        <MovieTable onDelete={this.handleDelete} onLike={this.handleLike} onSort={this.handleSort} movies={movies}/>
-                    </div>
-                    <div className="mt-3">
+                <div
+                    style={{ backgroundImage:"url('https://www.impulsonegocios.com/wp-content/uploads/2019/12/Escuadron-6-2.jpg')", filter: "brightness(40%)", zIndex: "-10"}}
+                    className="fixed inset-0 bg-cover bg-center"
+                />
+                <div className="fixed inset-x-0 top-20 bottom-0 px-6" style={{background: "linear-gradient(rgba(0,0,0,0), #000)"}}>
+                    {movie && <div className="w-auto md:w-1/2 text-left">
+                        <h1 className="text-3xl md:text-4xl font-bold text-red-700 md:leading-loose">{movie.title}</h1>
+                        <div className="my-2">
+                            <p className="text-sm md:text-base text-gray-300">2014 • {movie.dailyRentalRate} Stars</p>
+                        </div>
+                        <p className="text-sm md:text-base text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <div className="flex mt-5">
+                            <button className="rounded-lg bg-red-700 text-white px-5 py-1.5 mr-2 hover:opacity-70" onClick={() => this.handleDelete(movie._id)}>Delete</button>
+                            <Like isFavorite={movie.liked} onFavorite={() => {}}/>
+                        </div>
+                    </div>}
+                    <div className="flex flex-col mt-16 w-full">
                         <ListGroup onChange={this.handleFilterChange} items={this.state.filters} currentItem={this.state.currentFilter}/>
+                        <MovieTable movies={movies} onSelect={this.handleSelect}/>
+                        <Pagination pageSize={this.state.pageSize} pagesCount={filteredMovies.length} currentPage={this.state.currentPage} handleChange={this.handleChange}/>
                     </div>
                 </div>
-                <Pagination pageSize={this.state.pageSize} pagesCount={filteredMovies.length} currentPage={this.state.currentPage} handleChange={this.handleChange}/>
             </React.Fragment>
         );
     }

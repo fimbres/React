@@ -10,6 +10,7 @@ import MovieDetails from './movieDetails';
 import Login from './login';
 import SignUp from './signUp';
 import Logout from './logout';
+import MyProfile from './myprofile';
 
 class Router extends Component {
     state = {  } 
@@ -43,6 +44,13 @@ class Router extends Component {
                         <Route 
                             path="/checkout" 
                             render={props => this.props.user ? <CheckoutPage {...props}/> : <Redirect to={{
+                                pathname: '/login',
+                                state: { from: props.location }
+                                }}/>}
+                        />
+                        <Route 
+                            path="/my-profile" 
+                            render={props => this.props.user ? <MyProfile {...props} user={this.props.user}/> : <Redirect to={{
                                 pathname: '/login',
                                 state: { from: props.location }
                                 }}/>}

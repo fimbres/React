@@ -45,7 +45,7 @@ class MoviesForm extends Form {
                     <h1 className="text-5xl font-bold text-red-700 leading-loose">{`${title ? title + " Movie" : "New Movie"}`}</h1>
                     <form onSubmit={this.handleSumbit} className="space-y-5">
                         {this.renderInput("title", "Title")}
-                        {this.renderSelect("genreId", "Genre", this.state.genres)}
+                        {this.renderSelect("genreId", "Select a genre", this.state.genres)}
                         {this.renderInput("numberInStock", "Stock", "number")}
                         {this.renderInput("dailyRentalRate", "Rate", "number")}
                         {this.renderButton("Submit")}
