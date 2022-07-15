@@ -9,7 +9,7 @@ import { paginate } from '../utils/pagination';
 import ListGroup from './llistGroup';
 import { filtration } from '../utils/filtration';
 import MovieTable from './movieTable';
-import Like from './like';
+// import Like from './like';
 
 class Movie extends Component {
     state = {
@@ -28,8 +28,8 @@ class Movie extends Component {
         this.setState({ movies, filters: [{ _id:'', name:"All Genres" }].concat(...data), selectedMovie: movies[0]});
     };
 
-    handleDelete = id => {
-        const movies = deleteMovie(id);
+    handleDelete = async id => {
+        const movies = await deleteMovie(id);
         this.setState({ movies });
     }
 
