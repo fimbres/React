@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import _ from 'lodash';
 
 import { getMovies, deleteMovie } from "../services/movieService";
@@ -61,9 +62,10 @@ class Movie extends Component {
                             <p className="text-sm md:text-base text-gray-300">2014 • {movie.dailyRentalRate} Stars</p>
                         </div>
                         <p className="text-sm md:text-base text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <div className="flex mt-5">
-                            <button className="rounded-lg bg-red-700 text-white px-5 py-1.5 mr-2 hover:opacity-70" onClick={() => this.handleDelete(movie._id)}>Delete</button>
-                            <Like isFavorite={movie.liked} onFavorite={() => {}}/>
+                        <div className="flex mt-5 space-x-3">
+                            <button className="w-full md:w-auto rounded-lg bg-red-700 text-white px-5 py-1.5 mr-2 hover:opacity-70 text-center" onClick={() => this.handleDelete(movie._id)}>Delete</button>
+                            <Link className="w-full md:w-auto rounded-lg border border-white text-white px-5 py-1.5 mr-2 hover:opacity-70 text-center" to={`/movie/${movie._id}`}>Edit</Link>
+                            {/* <Like isFavorite={movie.liked} onFavorite={() => {}}/> */}
                         </div>
                     </div>}
                     <div className="flex flex-col mt-16 w-full">
