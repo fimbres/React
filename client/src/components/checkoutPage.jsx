@@ -46,7 +46,7 @@ class CheckoutP extends Component {
       render() { 
         return (
           <div className="App">
-            <main className="container mt-5">
+            <main className="mt-5">
               <Counters onDelete={this.handleDelete} onReset={this.handleReset} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} onFavorite={this.handleSelect} counters={this.state.counters}/>
             </main>
           </div>

@@ -48,7 +48,7 @@ class Form extends Component {
     };
 
     renderButton(label) {
-        return <button className="btn btn-primary" disabled={this.validate()}>{label}</button>
+        return <button className="rounded-lg bg-red-700 text-white text-lg px-5 py-1.5 w-full hover:opacity-70" disabled={this.validate()}>{label}</button>
     }
 
     renderInput(name, label, type = "text") {

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Logout extends Component {
     componentDidMount() {
         localStorage.removeItem('authToken');
-        window.location = '/';
+        window.location = '/welcome';
     }
 
     render() { 

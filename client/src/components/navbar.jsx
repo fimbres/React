@@ -1,23 +1,19 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-const NavBar = ({ user, totalCounters }) => {
+import Logo from "../media/logo.png";
+
+const NavBar = ({ user }) => {
+    const { pathname : path } = window.location;
+    
     return (
-        <nav className="navbar navbar-light bg-light mb-5">
-            <div className="navbar-brand mb-0 h1">
-                <span className="mr-5">Navbar</span>
-                {totalCounters && <span className="badge badge-pill badge-secondary ml-2">{totalCounters}</span>}
-                <NavLink to="/" className="mx-2 nav-item nav-NavLink">Home</NavLink>
-                <NavLink to="/movies" className="mx-2 nav-item nav-NavLink">Movies</NavLink>
-                <NavLink to="/checkout" className="mx-2 nav-item nav-NavLink">Checkout</NavLink>
-                {!user && <>
-                    <NavLink to="/login" className="mx-2 nav-item nav-NavLink">Login</NavLink>
-                    <NavLink to="/signup" className="mx-2 nav-item nav-NavLink">Signup</NavLink>
-                </>}
-                {user && <>
-                    <NavLink to="/profile" className="mx-2 nav-item nav-NavLink">{user.name}</NavLink>
-                    <NavLink to="/logout" className="mx-2 nav-item nav-NavLink">Logout</NavLink>
-                </>}
+        <nav className="absolute flex items-center justify-between inset-x-0 top-0 p-3 mb-5 backdrop-blur-xl z-10">
+            <img src={Logo} className="h-12" alt="Logo" />
+            <div>
+                <NavLink to="/movies" className={`mx-2 text-lg hover:opacity-70 ${path === "/movies" ? "font-bold text-red-600" : "text-gray-500"}`}>Movies</NavLink>
+                <NavLink to="/checkout" className={`mx-2 text-lg hover:opacity-70 ${path === "/checkout" ? "font-bold text-red-600" : "text-gray-500"}`}>Checkout</NavLink>
+                <NavLink to="/profile" className={`mx-2 text-lg hover:opacity-70 ${path === "/profile" ? "font-bold text-red-600" : "text-gray-500"}`}>{user.name}</NavLink>
+                <NavLink to="/logout" className={`mx-2 text-lg hover:opacity-70 ${path === "/logout" ? "font-bold text-red-600" : "text-gray-500"}`}>Logout</NavLink>
             </div>
         </nav>
     );

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 
 import { getMovies, deleteMovie } from "../services/movieService";
@@ -49,7 +48,7 @@ class Movie extends Component {
             <React.Fragment>
                 <h1 className="mt-5">Showing {filteredMovies.length} movies from the database</h1>
                 <Link className="btn btn-primary" to="/movie/new">New Movie</Link>
-                <div className="container d-flex flex-row-reverse">
+                <div className="">
                     <div className="mt-3 w-100">
                         <MovieTable onDelete={this.handleDelete} onLike={this.handleLike} onSort={this.handleSort} movies={movies}/>
                     </div>

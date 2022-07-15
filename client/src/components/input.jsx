@@ -2,12 +2,9 @@ import React from 'react';
 
 export default function input({ name, label, error, ...props }) {
   return (
-        <div className="form-group">
-            <label htmlFor={name}>
-                {label}
-            </label>
-            <input id={name} name={name} className="form-control" {...props}/>
-            {error && <div className="alert alert-danger">{error}</div>}
+        <div className="flex flex-col">
+            <input id={name} name={name} placeholder={label} className="px-4 py-2 bg-zinc-700 rounded-md text-gray-300" {...props}/>
+            {error && <div className="my-2 text-amber-500 text-lg">{error}</div>}
         </div>
     )
 };
