@@ -4,7 +4,7 @@
   "description": "Api of Movix",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "seed": "node seed.js",
     "test": "jest --watchAll --verbose"
   },
