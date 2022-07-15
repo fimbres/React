@@ -41,13 +41,13 @@ class Router extends Component {
                                 state: { from: props.location }
                                 }}/>}
                         />
-                        <Route 
+                        {/* <Route 
                             path="/checkout" 
                             render={props => this.props.user ? <CheckoutPage {...props}/> : <Redirect to={{
                                 pathname: '/login',
                                 state: { from: props.location }
                                 }}/>}
-                        />
+                        /> */}
                         <Route 
                             path="/my-profile" 
                             render={props => this.props.user ? <MyProfile {...props} user={this.props.user}/> : <Redirect to={{
