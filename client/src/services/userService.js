@@ -1,6 +1,6 @@
 import http from "./http-service";
 
-const usersEndpoint = 'http://localhost:3900/api/users';
+const usersEndpoint = '/users';
 
 export function register(user) {
     return http.post(usersEndpoint, {

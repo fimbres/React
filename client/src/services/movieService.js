@@ -1,6 +1,6 @@
 import http from "./http-service";
 
-const moviesEndpoint = 'http://localhost:3900/api/movies';
+const moviesEndpoint = '/movies';
 
 export function getMovies() {
     return http.get(moviesEndpoint);
