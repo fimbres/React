@@ -11,6 +11,10 @@
   "keywords": [],
   "author": "Isaac Fimbres",
   "license": "ISC",
+  "engines": {
+    "npm": "6.14.16",
+    "node": "8.16.2"
+  },
   "dependencies": {
     "bcrypt": "^1.0.3",
     "config": "^1.29.4",
